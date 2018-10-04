@@ -87,20 +87,18 @@ function SoldierFormation(soldier, soldierIndex, numSoldiers) {
     }
 }
 // If you have funds for a soldier, summon one.
-function summonTroops() {
+function summonTroops(summonType) {
     var summonTypes = ["griffin-rider"];
-    var summonType = summonTypes[hero.built.length % summonTypes.length];
+    summonType = summonTypes[hero.built.length % summonTypes.length];
     if (hero.gold >= hero.costOf(summonType)) {
         hero.summon(summonType);
     }
 }
 function commandSoldier(soldier) {
-
-    // Loop over all your soldiers and order them to attack.
     for (var i = 0; i < soldiers.length; i++) {
         var enemy = soldier.findNearest(hero.findEnemies());
         soldier = soldiers[i];
-        if (enemy && enemy.health > 0) {
+        if (enemy) {
             // Use the 'attack' command to make your soldiers attack.
             hero.command(soldier, "attack", enemy);
         }
@@ -123,9 +121,7 @@ function commandArcher(archer) {
     }
 }
 function commandGriffin(griffin) {
-    var enemies = hero.findEnemies();
     var enemy = griffin.findNearest(enemies);
-
     // Loop over all your soldiers and order them to attack.
     for (var i = 0; i < griffins.length; i++) {
         griffin = griffins[i];
