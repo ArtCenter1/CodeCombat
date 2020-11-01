@@ -30,6 +30,22 @@ function pickUpCoin() {
     }
 }
 
+// Find the highest health enemy
+function findMostHealth(enemies) {
+    var target = null;
+    var targetHealth = 0;
+    var enemyIndex = 0;
+    while(enemyIndex < enemies.length) {
+        var enemy = enemies[enemyIndex];
+        if(enemy.health > targetHealth) {
+            target = enemy;
+            targetHealth = enemy.health;
+        }
+        enemyIndex += 1;
+    }
+    return target;
+}
+
 // Return the distance between given enemies
 function distanceBetweenEnemies(a, b){
     return ((a.pos.x - b.pos.x) ^ 2 + (a.pos.y - b.pos.y) ^ 2) ^ 0.5;
